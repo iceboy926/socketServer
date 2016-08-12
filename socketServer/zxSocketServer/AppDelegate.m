@@ -43,7 +43,7 @@
 - (IBAction)sendMsg:(id)sender {
     
     [s writeData:[sendedMsg.stringValue dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
-    [self addText:[NSString stringWithFormat:@"%@:%@",s.connectedHost,[sendedMsg.stringValue dataUsingEncoding:NSUTF8StringEncoding]]];
+    [self addText:[NSString stringWithFormat:@"我:%@",sendedMsg.stringValue]];
     [s readDataWithTimeout:-1 tag:0];
 }
 
@@ -67,9 +67,9 @@
     NSString *receive = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     [self addText:[NSString stringWithFormat:@"%@:%@",sock.connectedHost,receive]];
     
-    NSString *reply = [NSString stringWithFormat:@"收到:%@",receive];
+    //NSString *reply = [NSString stringWithFormat:@"收到:%@",receive];
     
-    [s writeData:[reply dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
+    //[s writeData:[reply dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
     [s readDataWithTimeout:-1 tag:0];
 }
 @end
