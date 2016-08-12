@@ -87,19 +87,18 @@
     {
         NSLog(@"ok");
         [self addText:@"打开端口"];
-        
-        [socket readDataWithTimeout:-1 tag:0];
     }
 }
--(void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port
+-(void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)hoststr port:(uint16_t)port
 {
-    [self addText:[NSString stringWithFormat:@"连接到:%@",host]];
+    [self addText:[NSString stringWithFormat:@"连接到:%@",hoststr]];
     [socket readDataWithTimeout:-1 tag:0];
 }
 
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
 {
+    
 }
 - (IBAction)send:(id)sender {
     [socket writeData:[message.text dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];

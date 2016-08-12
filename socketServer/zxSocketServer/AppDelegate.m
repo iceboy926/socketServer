@@ -40,13 +40,6 @@
         [self addText:[NSString stringWithFormat:@"开始监听%d端口.",port.integerValue]];
     }
 }
-- (IBAction)sendMsg:(id)sender {
-    
-    [s writeData:[sendedMsg.stringValue dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
-    [self addText:[NSString stringWithFormat:@"我:%@",sendedMsg.stringValue]];
-    [s readDataWithTimeout:-1 tag:0];
-}
-
 
 - (void)socket:(GCDAsyncSocket *)sender didAcceptNewSocket:(GCDAsyncSocket *)newSocket
 {
@@ -61,6 +54,15 @@
     s.delegate = self;
     [s readDataWithTimeout:-1 tag:0];
 }
+
+- (IBAction)sendMsg:(id)sender {
+    
+    [s writeData:[sendedMsg.stringValue dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
+    [self addText:[NSString stringWithFormat:@"我:%@",sendedMsg.stringValue]];
+    [s readDataWithTimeout:-1 tag:0];
+}
+
+
 
 -(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
